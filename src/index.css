@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    margin: 1rem auto;
+    width: 600px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    padding: 0.4rem;
+    width: 100%;
+}
+
+table {
+    margin: 2rem auto;
+    width: 100%;
+}
+
+table th {
+    padding: 0.3rem;
+}
+
+thead {
+    background-color: lightgray;
+}
+
+td {
+    padding: 0.5rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid lightgray;
+}
