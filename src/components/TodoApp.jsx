@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TodoInput from './TodoInput';
 import TodosTable from './TodosTable';
 
-function Todos(props) {
+function Todos() {
 
     const [todos, setTodos] = useState([]);
 
