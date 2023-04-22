@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TodoInput from './TodoInput';
 import TodosTable from './TodosTable';
-import { DB, TODO_STORE } from '../db/db';
+import todoDao from '../db/dao/todoDao';
 
 function Todos() {
 
@@ -11,36 +11,17 @@ function Todos() {
     useEffect(() => {
 
         const load = async () => {
-            const db = await DB.openDB()
-            const store = db.transaction([TODO_STORE]).objectStore(TODO_STORE);
-            const request = store.getAll();
-            request.onsuccess = () =>{
-                const dbTodos = request.result;
-                setTodos(dbTodos);
-            }
+            const todos = await todoDao.getAll();
+            setTodos(todos);
         }
 
         load();
     }, [])
 
-    const handleSubmit =  async(todo) => {
-        // DB
-        const db = await DB.openDB()
-        const store = db.transaction([TODO_STORE], 'readwrite').objectStore(TODO_STORE);
-        const request =  store.add(todo);
+    const handleSubmit = async (todo) => {
+        const todoDb = await todoDao.add(todo);
+        setTodos((todos) => [...todos, todoDb]);
 
-        request.onsuccess = () =>{
-            const todoDb = request.result;
-
-            console.log({todoDb});
-
-            setTodos((todos) => [...todos, todoDb]);
-        }
-
-
-        // Write in DB
-
-        setTodos((todos) => [...todos, todo])
     }
 
     return (

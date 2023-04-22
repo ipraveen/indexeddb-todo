@@ -2,6 +2,11 @@ export const TODO_STORE = 'todos';
 export const DB_NAME = 'todo_db';
 export const DB_VERSION = 1;
 
+
+// 
+
+export const TXN_WRITE = 'readwrite';
+
 class DB {
     static openDB() {
         return new Promise((resolve, reject) => {
