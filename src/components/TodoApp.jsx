@@ -12,7 +12,8 @@ function Todos() {
 
     return (
         <main>
-            <h1>TODOs</h1>
+            <h2>IndexedDB Master Class</h2>
+            <h1>TODOs App</h1>
             <TodoInput onSubmit={handleSubmit} />
             <TodosTable todos={todos} />
         </main>
