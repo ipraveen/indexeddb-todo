@@ -7,7 +7,7 @@ function BookTable({ todos }) {
     return (
         <table>
             <tbody>
-                {todos.map(({ id, text }) => (<tr key={id}><td>{text}</td></tr>))}
+                {todos.map(({ text }, index) => (<tr key={index}><td>{text}</td></tr>))}
             </tbody>
         </table>
     );
