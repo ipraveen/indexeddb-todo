@@ -56,3 +56,10 @@ tbody tr {
 tr:hover .todo-item button {
     display: block;
 }
+
+.todo-item section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}

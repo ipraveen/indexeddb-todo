@@ -32,12 +32,20 @@ function Todos() {
         setTodos(todos);
     }
 
+    const handleTodoUpdate = async (todo) => {
+      
+        await todoDao.update(todo);
+
+        const todos = await todoDao.getAll();
+        setTodos(todos);
+    }
+
     return (
         <main>
             <h2>IndexedDB Master Class</h2>
             <h1>TODOs App</h1>
             <TodoInput onSubmit={handleSubmit} />
-            <TodosTable todos={todos} onDelete={handleTodoDelete} />
+            <TodosTable todos={todos} onDelete={handleTodoDelete} onTodoUpdate={handleTodoUpdate} />
         </main>
     );
 }

@@ -25,6 +25,12 @@ class TodoDao {
         const store = db.transaction([TODO_STORE], TXN_WRITE).objectStore(TODO_STORE);
         return store.delete(id);
     }
+
+    async update(todo){
+        const db = await DB.openDB();
+        const store = db.transaction([TODO_STORE], TXN_WRITE).objectStore(TODO_STORE);
+        return store.put(todo);
+    }
 }
 
 const todoDao = new TodoDao();
