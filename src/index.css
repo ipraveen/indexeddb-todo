@@ -10,7 +10,8 @@ main {
     width: 600px;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
@@ -38,4 +39,20 @@ td {
 
 tbody tr {
     border-bottom: 1px solid lightgray;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-item button {
+    border: none;
+    background: white;
+    cursor: pointer;
+    display: none;
+}
+
+tr:hover .todo-item button {
+    display: block;
 }

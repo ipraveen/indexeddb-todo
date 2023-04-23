@@ -24,12 +24,20 @@ function Todos() {
 
     }
 
+    const handleTodoDelete = async (id) => {
+        // Delete Todo
+        await todoDao.delete(id);
+
+        const todos = await todoDao.getAll();
+        setTodos(todos);
+    }
+
     return (
         <main>
             <h2>IndexedDB Master Class</h2>
             <h1>TODOs App</h1>
             <TodoInput onSubmit={handleSubmit} />
-            <TodosTable todos={todos} />
+            <TodosTable todos={todos} onDelete={handleTodoDelete} />
         </main>
     );
 }
