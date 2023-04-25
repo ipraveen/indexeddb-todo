@@ -1,7 +1,7 @@
 import React from 'react';
 
 function TodoItem({ todo, onDelete, onTodoUpdate }) {
-    const { id, text, completed } = todo;
+    const { id, text, completed, label } = todo;
 
     const textDecoration = completed ? 'line-through' : '';
 
@@ -9,7 +9,7 @@ function TodoItem({ todo, onDelete, onTodoUpdate }) {
         <div className='todo-item'>
             <section>
                 <input type='checkbox' checked={completed} onChange={() => onTodoUpdate({ ...todo, completed: !completed })}></input>
-                <span style={{ textDecoration }}>{text}</span>
+                <span style={{ textDecoration }}>{text}</span> {label && <small className='label'>{label}</small>}
             </section>
             <button onClick={() => onDelete(id)}>X</button>
         </div>

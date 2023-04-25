@@ -8,10 +8,21 @@ function TodoInput({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({
-            text: todo,
-            completed: false
-        });
+
+        if (todo.includes('#')) {
+            const [text, label] = todo.split('#')
+            onSubmit({
+                text: text.trim(),
+                label,
+                completed: false
+            });
+        } else {
+            onSubmit({
+                text: todo,
+                completed: false
+            });
+        }
+
         setTodo('');
     }
 

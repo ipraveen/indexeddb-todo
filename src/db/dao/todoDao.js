@@ -8,9 +8,29 @@ class TodoDao {
         return store.get(todoKey);
     }
 
-    async getAll() {
+    async getLabels() {
+        const db = await DB.openDB();
+        let cursor = await db
+            .transaction(TODO_STORE)
+            .objectStore(TODO_STORE)
+            .index('idx_label')
+            .openKeyCursor(null, 'nextunique');
+            
+        const labels = [];
+        while (cursor) {
+            labels.push(cursor.key);
+            cursor = await cursor.continue();
+        }
+
+        return labels;
+    }
+
+    async getAll(filter) {
         const db = await DB.openDB();
         const store = db.transaction([TODO_STORE]).objectStore(TODO_STORE);
+        if(filter?.label){
+            return store.index('idx_label').getAll(filter?.label);
+        }
         return store.getAll();
     }
 
@@ -20,13 +40,13 @@ class TodoDao {
         return store.get(key);
     }
 
-    async delete(id){
+    async delete(id) {
         const db = await DB.openDB();
         const store = db.transaction([TODO_STORE], TXN_WRITE).objectStore(TODO_STORE);
         return store.delete(id);
     }
 
-    async update(todo){
+    async update(todo) {
         const db = await DB.openDB();
         const store = db.transaction([TODO_STORE], TXN_WRITE).objectStore(TODO_STORE);
         return store.put(todo);
